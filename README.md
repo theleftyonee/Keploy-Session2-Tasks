@@ -2,6 +2,8 @@
 
 A modern, responsive web dashboard for student management built with Next.js 15, Supabase, and shadcn/ui components. This application provides a complete CRUD interface for managing student records with analytics, search functionality, and a beautiful user interface.
 
+Deployed URL: https://v0-student-hub-dashboard.vercel.app/
+
 ## 🚀 Features
 ![Screenshot 2025-06-20 154359](https://github.com/user-attachments/assets/53af47e9-ca42-4541-b184-6cf7aa4f952d)
 ![Screenshot 2025-06-20 154450](https://github.com/user-attachments/assets/2a388a56-7631-49ed-b846-add0c91dad8c)
