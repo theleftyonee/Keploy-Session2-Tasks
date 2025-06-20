@@ -1,4 +1,4 @@
-# StudentHub Dashboard
+# StudentHub Dashboard - Keploy API FELLOWSHIP SESSION 2 - TASK
 
 A modern, responsive web dashboard for student management built with Next.js 15, Supabase, and shadcn/ui components. This application provides a complete CRUD interface for managing student records with analytics, search functionality, and a beautiful user interface.
 
