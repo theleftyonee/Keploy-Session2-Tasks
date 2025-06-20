@@ -3,6 +3,10 @@
 A modern, responsive web dashboard for student management built with Next.js 15, Supabase, and shadcn/ui components. This application provides a complete CRUD interface for managing student records with analytics, search functionality, and a beautiful user interface.
 
 ## 🚀 Features
+![Screenshot 2025-06-20 154359](https://github.com/user-attachments/assets/53af47e9-ca42-4541-b184-6cf7aa4f952d)
+![Screenshot 2025-06-20 154450](https://github.com/user-attachments/assets/2a388a56-7631-49ed-b846-add0c91dad8c)
+![Screenshot 2025-06-20 154439](https://github.com/user-attachments/assets/c641aa12-63a6-4e97-b11f-ca9ff5e0d07a)
+![Screenshot 2025-06-20 154422](https://github.com/user-attachments/assets/8a206d29-40f4-411e-ba3e-e983a04e0c1d)
 
 - **Dashboard Overview**: View all students with key metrics (total students, average age, most popular course)
 - **Student Management**: Add, edit, and delete student records
@@ -48,6 +52,8 @@ CREATE TABLE students (
 This application uses Supabase's auto-generated REST API. All operations are performed through the Supabase JavaScript client:
 
 ### Student Operations
+
+
 
 #### Get All Students
 \`\`\`typescript
@@ -359,4 +365,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-Built with ❤️ using Next.js, Supabase, and modern web technologies.
+Built with ❤️ by Saksham using Next.js, Supabase, and modern web technologies.
