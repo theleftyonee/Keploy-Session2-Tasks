@@ -293,10 +293,11 @@ All files              |   78.45 |    72.31 |   81.25 |   77.89 |
 1. **Clone the repository**
    \`\`\`bash
    git clone https://github.com/theleftyonee/Keploy-Session2-Tasks.git
+
    cd studenthub-dashboard
    \`\`\`
 
-2. **Install dependencies**
+3. **Install dependencies**
    \`\`\`bash
    npm install
    # or
@@ -305,7 +306,7 @@ All files              |   78.45 |    72.31 |   81.25 |   77.89 |
    pnpm install
    \`\`\`
 
-3. **Environment setup**
+4. **Environment setup**
    
    Create `.env.local` file:
    \`\`\`env
@@ -318,7 +319,7 @@ All files              |   78.45 |    72.31 |   81.25 |   77.89 |
    - Select your project → Settings → API
    - Copy Project URL and anon/public key
 
-4. **Database setup**
+5. **Database setup**
    
    In Supabase SQL Editor, run:
    \`\`\`sql
@@ -345,14 +346,14 @@ All files              |   78.45 |    72.31 |   81.25 |   77.89 |
    ('Eva Brown', 19, 'Biology');
    \`\`\`
 
-5. **Run the application**
+6. **Run the application**
    \`\`\`bash
    npm run dev
    \`\`\`
    
    Open [http://localhost:3000](http://localhost:3000)
 
-6. **Run the test suite**
+7. **Run the test suite**
    \`\`\`bash
    # Run all tests
    npm test
