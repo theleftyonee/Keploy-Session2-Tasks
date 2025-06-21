@@ -234,19 +234,28 @@ All files              |   78.45 |    72.31 |   81.25 |   77.89 |
 ## 📊 Test Coverage Screenshots
 
 ### Overall Coverage Report
-![Test Coverage Overview](./coverage-screenshots/coverage-report.html)
+
+![Jest-Coverage-Report-StudentHub-Dashboard-06-22-2025_01_18_AM](https://github.com/user-attachments/assets/b56c94b5-6192-4285-848d-bbe13a8654e0)
+
 *Comprehensive coverage report showing 78.45% overall coverage with detailed file-by-file breakdown*
 
 ### Unit Test Results
-![Unit Test Results](./coverage-screenshots/unit-tests.html)
+
+![Unit-Test-Results-StudentHub-Dashboard-06-22-2025_01_19_AM](https://github.com/user-attachments/assets/cc59b772-6dd1-42fd-a683-8c68e317c1c9)
+
 *Unit test execution showing 24 tests passed with mocked dependencies and fast execution*
 
 ### Integration Test Results  
-![Integration Test Results](./coverage-screenshots/integration-tests.html)
+
+![Integration-Test-Results-StudentHub-Dashboard-06-22-2025_01_19_AM](https://github.com/user-attachments/assets/c03d0b29-b81d-4e23-8727-e81b27b8e02c)
+
 *Integration tests with real Supabase database operations and automatic cleanup*
 
 ### API Test Results
-![API Test Results](./coverage-screenshots/api-tests.html)
+
+![API-Test-Results-StudentHub-Dashboard-06-22-2025_01_18_AM](https://github.com/user-attachments/assets/194ac7cc-f7a6-4bbc-9bdc-57e88a5b8cd3)
+
+
 *End-to-end API testing with 18 tests covering CRUD operations, validation, and performance*
 
 ### Coverage Metrics Summary
