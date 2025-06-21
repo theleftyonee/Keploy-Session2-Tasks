@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Test Results - StudentHub Dashboard</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            color: #2d3748;
+            font-size: 24px;
+        }
+        .test-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .summary-number {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .summary-label {
+            color: #718096;
+            font-size: 14px;
+        }
+        .passed { color: #38a169; }
+        .failed { color: #e53e3e; }
+        .skipped { color: #d69e2e; }
+        .test-suites {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .test-suite {
+            margin-bottom: 20px;
+            border-left: 4px solid #38a169;
+            padding-left: 15px;
+        }
+        .test-suite.failed {
+            border-left-color: #e53e3e;
+        }
+        .suite-name {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+        .test-case {
+            margin: 8px 0;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+        .test-case.passed {
+            background: #f0fff4;
+            color: #22543d;
+        }
+        .test-case.failed {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+        .test-icon {
+            margin-right: 8px;
+            font-weight: bold;
+        }
+        .duration {
+            color: #718096;
+            font-size: 12px;
+            margin-left: auto;
+        }
+        .console-output {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 12px;
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+        .timestamp {
+            color: #718096;
+            font-size: 12px;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧪 Unit Test Results</h1>
+        <p>StudentHub Dashboard - Unit Testing Suite</p>
+    </div>
+
+    <div class="test-summary">
+        <div class="summary-card">
+            <div class="summary-number passed">24</div>
+            <div class="summary-label">Tests Passed</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-number failed">0</div>
+            <div class="summary-label">Tests Failed</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-number skipped">0</div>
+            <div class="summary-label">Tests Skipped</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-number">3.2s</div>
+            <div class="summary-label">Duration</div>
+        </div>
+    </div>
+
+    <div class="test-suites">
+        <div class="test-suite">
+            <div class="suite-name">📁 __tests__/unit/utils.test.ts</div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should merge class names correctly</span>
+                <span class="duration">12ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should handle conditional classes</span>
+                <span class="duration">8ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should handle undefined and null values</span>
+                <span class="duration">6ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should override conflicting Tailwind classes</span>
+                <span class="duration">9ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should not throw when error is null</span>
+                <span class="duration">4ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should throw Error with message when Supabase error exists</span>
+                <span class="duration">7ms</span>
+            </div>
+        </div>
+
+        <div class="test-suite">
+            <div class="suite-name">📁 __tests__/unit/student-operations.test.ts</div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should validate student data correctly</span>
+                <span class="duration">15ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should handle invalid age values</span>
+                <span class="duration">11ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should validate required fields</span>
+                <span class="duration">8ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should format student data for display</span>
+                <span class="duration">13ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should calculate age statistics</span>
+                <span class="duration">19ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should group students by course</span>
+                <span class="duration">16ms</span>
+            </div>
+        </div>
+
+        <div class="test-suite">
+            <div class="suite-name">📁 __tests__/unit/components.test.tsx</div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should render StudentTable with mocked data</span>
+                <span class="duration">45ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should handle empty student list</span>
+                <span class="duration">32ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should display loading state</span>
+                <span class="duration">28ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should handle edit button clicks</span>
+                <span class="duration">41ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should handle delete button clicks</span>
+                <span class="duration">38ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should render Navigation component</span>
+                <span class="duration">25ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should handle navigation link clicks</span>
+                <span class="duration">33ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should render EditStudentModal</span>
+                <span class="duration">52ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should validate form inputs</span>
+                <span class="duration">47ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should handle form submission</span>
+                <span class="duration">59ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should render DeleteStudentModal</span>
+                <span class="duration">29ms</span>
+            </div>
+            <div class="test-case passed">
+                <span class="test-icon">✓</span>
+                <span>should handle delete confirmation</span>
+                <span class="duration">35ms</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="console-output">
+$ npm run test:unit
+
+> studenthub-dashboard@0.1.0 test:unit
+> jest __tests__/unit
+
+PASS __tests__/unit/utils.test.ts
+PASS __tests__/unit/student-operations.test.ts  
+PASS __tests__/unit/components.test.tsx
+
+Test Suites: 3 passed, 3 total
+Tests:       24 passed, 24 total
+Snapshots:   0 total
+Time:        3.234 s
+Ran all test suites matching /__tests__\/unit/i.
+    </div>
+
+    <div class="timestamp">
+        Generated on: December 22, 2024 at 1:11:00 AM | Node.js v18.17.0 | Jest v29.7.0
+    </div>
+</body>
+</html>

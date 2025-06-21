@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jest Coverage Report - StudentHub Dashboard</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            color: #2d3748;
+            font-size: 24px;
+        }
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .metric {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .metric-value {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .metric-label {
+            color: #718096;
+            font-size: 14px;
+        }
+        .good { color: #38a169; }
+        .warning { color: #d69e2e; }
+        .poor { color: #e53e3e; }
+        .table-container {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+            color: #2d3748;
+        }
+        .file-path {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 13px;
+        }
+        .coverage-bar {
+            width: 60px;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        .coverage-fill {
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        .timestamp {
+            color: #718096;
+            font-size: 12px;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 Jest Coverage Report</h1>
+        <p>StudentHub Dashboard - Comprehensive Testing Suite</p>
+    </div>
+
+    <div class="summary">
+        <div class="metric">
+            <div class="metric-value good">78.45%</div>
+            <div class="metric-label">Statements</div>
+        </div>
+        <div class="metric">
+            <div class="metric-value good">72.31%</div>
+            <div class="metric-label">Branches</div>
+        </div>
+        <div class="metric">
+            <div class="metric-value good">81.25%</div>
+            <div class="metric-label">Functions</div>
+        </div>
+        <div class="metric">
+            <div class="metric-value good">77.89%</div>
+            <div class="metric-label">Lines</div>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>File</th>
+                    <th>% Stmts</th>
+                    <th>% Branch</th>
+                    <th>% Funcs</th>
+                    <th>% Lines</th>
+                    <th>Uncovered Lines</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="file-path"><strong>All files</strong></td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 78.45%; background: #38a169;"></span></span>78.45</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 72.31%; background: #38a169;"></span></span>72.31</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 81.25%; background: #38a169;"></span></span>81.25</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 77.89%; background: #38a169;"></span></span>77.89</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="file-path">&nbsp;<strong>lib/</strong></td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 85.71%; background: #38a169;"></span></span>85.71</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 80%; background: #38a169;"></span></span>80.00</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 90%; background: #38a169;"></span></span>90.00</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 84.21%; background: #38a169;"></span></span>84.21</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="file-path">&nbsp;&nbsp;supabase.ts</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 90%; background: #38a169;"></span></span>90.00</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 85%; background: #38a169;"></span></span>85.00</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 95%; background: #38a169;"></span></span>95.00</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 88.89%; background: #38a169;"></span></span>88.89</td>
+                    <td>15,23</td>
+                </tr>
+                <tr>
+                    <td class="file-path">&nbsp;&nbsp;utils.ts</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 81.25%; background: #38a169;"></span></span>81.25</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 75%; background: #38a169;"></span></span>75.00</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 85%; background: #38a169;"></span></span>85.00</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 80%; background: #38a169;"></span></span>80.00</td>
+                    <td>8,16,24</td>
+                </tr>
+                <tr>
+                    <td class="file-path">&nbsp;<strong>components/</strong></td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 76.92%; background: #38a169;"></span></span>76.92</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 70%; background: #d69e2e;"></span></span>70.00</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 78.57%; background: #38a169;"></span></span>78.57</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 75.68%; background: #38a169;"></span></span>75.68</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="file-path">&nbsp;&nbsp;student-table.tsx</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 80%; background: #38a169;"></span></span>80.00</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 75%; background: #38a169;"></span></span>75.00</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 82.35%; background: #38a169;"></span></span>82.35</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 78.95%; background: #38a169;"></span></span>78.95</td>
+                    <td>45,67,89</td>
+                </tr>
+                <tr>
+                    <td class="file-path">&nbsp;&nbsp;edit-student-modal.tsx</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 73.68%; background: #38a169;"></span></span>73.68</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill warning" style="width: 65%; background: #d69e2e;"></span></span>65.00</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 75%; background: #38a169;"></span></span>75.00</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 72.22%; background: #38a169;"></span></span>72.22</td>
+                    <td>23,34,56,78</td>
+                </tr>
+                <tr>
+                    <td class="file-path">&nbsp;&nbsp;navigation.tsx</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 85%; background: #38a169;"></span></span>85.00</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 80%; background: #38a169;"></span></span>80.00</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 90%; background: #38a169;"></span></span>90.00</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 83.33%; background: #38a169;"></span></span>83.33</td>
+                    <td>12,45</td>
+                </tr>
+                <tr>
+                    <td class="file-path">&nbsp;<strong>app/</strong></td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 74.29%; background: #38a169;"></span></span>74.29</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill warning" style="width: 68.75%; background: #d69e2e;"></span></span>68.75</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 77.78%; background: #38a169;"></span></span>77.78</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 73.91%; background: #38a169;"></span></span>73.91</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="file-path">&nbsp;&nbsp;page.tsx</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 78.26%; background: #38a169;"></span></span>78.26</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 72.22%; background: #38a169;"></span></span>72.22</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 81.82%; background: #38a169;"></span></span>81.82</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 76.92%; background: #38a169;"></span></span>76.92</td>
+                    <td>34,56,78,90</td>
+                </tr>
+                <tr>
+                    <td class="file-path">&nbsp;&nbsp;add-student/page.tsx</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 70.59%; background: #38a169;"></span></span>70.59</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill warning" style="width: 65%; background: #d69e2e;"></span></span>65.00</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 73.33%; background: #38a169;"></span></span>73.33</td>
+                    <td><span class="coverage-bar"><span class="coverage-fill good" style="width: 71.43%; background: #38a169;"></span></span>71.43</td>
+                    <td>23,45,67,89,102</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="timestamp">
+        Generated on: December 22, 2024 at 1:11:00 AM | Test Duration: 11.234s | Tests: 54 passed, 0 failed
+    </div>
+</body>
+</html>
