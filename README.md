@@ -292,7 +292,7 @@ All files              |   78.45 |    72.31 |   81.25 |   77.89 |
 
 1. **Clone the repository**
    \`\`\`bash
-   git clone https://github.com/yourusername/studenthub-dashboard.git
+   git clone https://github.com/theleftyonee/studenthub-dashboard.git
    cd studenthub-dashboard
    \`\`\`
 
@@ -576,10 +576,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] **CDN Integration**: Static asset optimization
 
 ---
-
-**Built with ❤️ using Next.js, Supabase, and comprehensive testing practices**
-
 **Testing Framework**: Jest + React Testing Library  
 **Coverage Target**: 70%+ across all metrics  
 **Test Types**: Unit, Integration, API, Performance  
 **Database**: Supabase PostgreSQL with real-time capabilities
+
+**Built with ❤️ by Saksham using Next.js, Supabase, and comprehensive testing practices**
+
