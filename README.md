@@ -292,7 +292,7 @@ All files              |   78.45 |    72.31 |   81.25 |   77.89 |
 
 1. **Clone the repository**
    \`\`\`bash
-   git clone https://github.com/theleftyonee/studenthub-dashboard.git
+   git clone https://github.com/theleftyonee/Keploy-Session2-Tasks.git
    cd studenthub-dashboard
    \`\`\`
 
