@@ -8,7 +8,8 @@
     "app": {
       "name": "studenthub-dashboard",
       "port": 3000,
-      "host": "localhost"
+      "host": "localhost",
+      "delay": 10
     },
     "server": {
       "port": 6789,
@@ -16,30 +17,86 @@
     },
     "test": {
       "path": "./keploy-tests",
+      "command": "npm run dev",
+      "proxyPort": 16789,
+      "delay": 20,
       "globalNoise": {
         "global": {
           "body": {
             "created_at": [],
-            "id": []
+            "id": [],
+            "timestamp": []
           },
           "header": {
-            "date": [],
-            "content-length": [],
-            "x-powered-by": []
+            "Date": [],
+            "X-Request-Id": []
           }
         }
       },
-      "normalize": {
-        "header": {
-          "date": [],
-          "content-length": [],
-          "connection": [],
-          "keep-alive": []
+      "testSets": [
+        {
+          "name": "students-crud-tests",
+          "tests": [
+            {
+              "name": "get-all-students",
+              "path": "/api/students",
+              "method": "GET"
+            },
+            {
+              "name": "create-student",
+              "path": "/api/students",
+              "method": "POST",
+              "body": {
+                "name": "Test Student",
+                "age": 22,
+                "course": "Computer Science"
+              }
+            },
+            {
+              "name": "search-students",
+              "path": "/api/students/search",
+              "method": "GET",
+              "query": {
+                "q": "Test",
+                "course": "Computer Science"
+              }
+            }
+          ]
+        },
+        {
+          "name": "analytics-tests",
+          "tests": [
+            {
+              "name": "get-analytics-overview",
+              "path": "/api/analytics/overview",
+              "method": "GET"
+            },
+            {
+              "name": "get-course-distribution",
+              "path": "/api/analytics/courses",
+              "method": "GET"
+            }
+          ]
         }
-      }
+      ]
     },
     "record": {
-      "path": "./keploy-mocks"
+      "filters": [
+        {
+          "urlMethods": {
+            "GET": [
+              "/api/students",
+              "/api/students/search",
+              "/api/analytics/overview",
+              "/api/analytics/courses",
+              "/api/analytics/age-groups"
+            ],
+            "POST": ["/api/students"],
+            "PUT": ["/api/students/*"],
+            "DELETE": ["/api/students/*"]
+          }
+        }
+      ]
     }
   }
 }

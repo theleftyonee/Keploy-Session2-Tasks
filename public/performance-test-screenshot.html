@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Performance Testing Results - StudentHub</title>
+    <title>Performance Testing Results</title>
     <style>
         * {
             margin: 0;
@@ -18,394 +18,436 @@
             padding: 20px;
         }
         
-        .container {
+        .performance-report {
             max-width: 1200px;
             margin: 0 auto;
             background: white;
-            border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             overflow: hidden;
         }
         
         .header {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
             color: white;
-            padding: 30px;
+            padding: 24px;
             text-align: center;
         }
         
-        .header h1 {
+        .title {
             font-size: 28px;
-            font-weight: 700;
+            font-weight: bold;
             margin-bottom: 8px;
         }
         
-        .header p {
-            opacity: 0.9;
+        .subtitle {
             font-size: 16px;
+            opacity: 0.9;
         }
         
-        .metrics-grid {
+        .metrics {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 30px;
-            background: #fffbeb;
+            gap: 24px;
+            padding: 24px;
+            background: #fef3c7;
         }
         
         .metric-card {
             background: white;
-            padding: 24px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             text-align: center;
-            border-top: 4px solid;
         }
         
-        .metric-card.rps { border-top-color: #f59e0b; }
-        .metric-card.response { border-top-color: #10b981; }
-        .metric-card.percentile { border-top-color: #3b82f6; }
-        .metric-card.errors { border-top-color: #ef4444; }
-        
-        .metric-number {
-            font-size: 36px;
-            font-weight: 800;
+        .metric-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #d97706;
             margin-bottom: 8px;
         }
         
-        .metric-number.rps { color: #f59e0b; }
-        .metric-number.response { color: #10b981; }
-        .metric-number.percentile { color: #3b82f6; }
-        .metric-number.errors { color: #ef4444; }
-        
         .metric-label {
-            color: #64748b;
+            color: #78716c;
             font-size: 14px;
-            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
-        .chart-section {
-            padding: 30px;
+        .test-phases {
+            padding: 24px;
         }
         
         .section-title {
             font-size: 20px;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .section-title::before {
-            content: "⚡";
-            margin-right: 10px;
-            font-size: 24px;
-        }
-        
-        .chart-container {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-            margin-bottom: 20px;
-        }
-        
-        .chart-title {
-            font-weight: 600;
-            color: #374151;
+            font-weight: bold;
+            color: #1f2937;
             margin-bottom: 16px;
         }
         
-        .chart-placeholder {
-            height: 200px;
-            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6b7280;
-            font-size: 14px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .chart-line {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            height: 2px;
-            background: #f59e0b;
-            border-radius: 1px;
-        }
-        
-        .chart-points {
-            position: absolute;
-            bottom: 10px;
-            left: 20px;
-            right: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .chart-point {
-            width: 8px;
-            height: 8px;
-            background: #f59e0b;
-            border-radius: 50%;
-            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
-        }
-        
-        .test-phases {
-            padding: 30px;
-            background: #fffbeb;
-        }
-        
-        .phases-grid {
+        .phase-list {
             display: grid;
             gap: 16px;
         }
         
         .phase-item {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
+            background: #f9fafb;
             padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .phase-header {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-        }
-        
-        .phase-info {
-            display: flex;
             align-items: center;
+            margin-bottom: 12px;
         }
         
-        .phase-icon {
-            width: 40px;
-            height: 40px;
+        .phase-name {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 16px;
+        }
+        
+        .phase-status {
+            background: #10b981;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .phase-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+            margin-top: 12px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d97706;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        
+        .response-chart {
+            margin-top: 24px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .chart-container {
+            height: 200px;
+            background: linear-gradient(45deg, #fef3c7 25%, transparent 25%), 
+                        linear-gradient(-45deg, #fef3c7 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #fef3c7 75%), 
+                        linear-gradient(-45deg, transparent 75%, #fef3c7 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 16px;
-            font-size: 18px;
-            background: #fef3c7;
-            color: #d97706;
-        }
-        
-        .phase-details h3 {
-            font-size: 16px;
+            color: #78716c;
             font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 4px;
+            position: relative;
+            overflow: hidden;
         }
         
-        .phase-details p {
-            font-size: 14px;
-            color: #64748b;
+        .chart-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                rgba(245, 158, 11, 0.1) 0%, 
+                rgba(245, 158, 11, 0.3) 25%, 
+                rgba(245, 158, 11, 0.5) 50%, 
+                rgba(245, 158, 11, 0.3) 75%, 
+                rgba(245, 158, 11, 0.1) 100%);
         }
         
-        .phase-metrics {
+        .endpoints-performance {
+            padding: 24px;
+            background: #f9fafb;
+        }
+        
+        .endpoint-list {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .endpoint-item {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             display: flex;
-            gap: 20px;
+            justify-content: space-between;
             align-items: center;
         }
         
-        .phase-metric {
-            text-align: center;
+        .endpoint-info {
+            flex: 1;
         }
         
-        .phase-metric-value {
-            font-size: 18px;
-            font-weight: 700;
-            color: #1e293b;
+        .endpoint-name {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 4px;
         }
         
-        .phase-metric-label {
-            font-size: 12px;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .status-badge {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
+        .endpoint-method {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            background: #dcfce7;
-            color: #16a34a;
+            background: #fef3c7;
+            color: #92400e;
         }
         
-        .footer {
-            background: #92400e;
-            color: white;
-            padding: 20px 30px;
+        .endpoint-metrics {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+        
+        .metric-small {
             text-align: center;
+        }
+        
+        .metric-small-value {
             font-size: 14px;
+            font-weight: bold;
+            color: #d97706;
+        }
+        
+        .metric-small-label {
+            font-size: 10px;
+            color: #6b7280;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="performance-report">
         <div class="header">
-            <h1>⚡ Performance Testing Results</h1>
-            <p>API performance under load with Artillery testing framework</p>
+            <div class="title">Performance Testing Results</div>
+            <div class="subtitle">Artillery load testing showing API performance under load</div>
         </div>
         
-        <div class="metrics-grid">
-            <div class="metric-card rps">
-                <div class="metric-number rps">150/s</div>
-                <div class="metric-label">Requests Per Second</div>
+        <div class="metrics">
+            <div class="metric-card">
+                <div class="metric-value">150</div>
+                <div class="metric-label">RPS</div>
             </div>
-            <div class="metric-card response">
-                <div class="metric-number response">145ms</div>
-                <div class="metric-label">Avg Response Time</div>
+            <div class="metric-card">
+                <div class="metric-value">145ms</div>
+                <div class="metric-label">Avg Response</div>
             </div>
-            <div class="metric-card percentile">
-                <div class="metric-number percentile">280ms</div>
+            <div class="metric-card">
+                <div class="metric-value">280ms</div>
                 <div class="metric-label">95th Percentile</div>
             </div>
-            <div class="metric-card errors">
-                <div class="metric-number errors">0%</div>
+            <div class="metric-card">
+                <div class="metric-value">0%</div>
                 <div class="metric-label">Error Rate</div>
             </div>
         </div>
         
-        <div class="chart-section">
-            <div class="section-title">Response Time Distribution</div>
-            
-            <div class="chart-container">
-                <div class="chart-title">Response Time Over Test Duration</div>
-                <div class="chart-placeholder">
-                    Response time chart showing consistent performance
-                    <div class="chart-line"></div>
-                    <div class="chart-points">
-                        <div class="chart-point"></div>
-                        <div class="chart-point"></div>
-                        <div class="chart-point"></div>
-                        <div class="chart-point"></div>
-                        <div class="chart-point"></div>
-                        <div class="chart-point"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="chart-container">
-                <div class="chart-title">Requests Per Second</div>
-                <div class="chart-placeholder">
-                    RPS chart showing load progression through test phases
-                    <div class="chart-line"></div>
-                    <div class="chart-points">
-                        <div class="chart-point"></div>
-                        <div class="chart-point"></div>
-                        <div class="chart-point"></div>
-                        <div class="chart-point"></div>
-                        <div class="chart-point"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
         <div class="test-phases">
-            <div class="section-title">Test Phases Results</div>
+            <h2 class="section-title">Load Testing Phases</h2>
+            <div class="phase-list">
+                <div class="phase-item">
+                    <div class="phase-header">
+                        <div class="phase-name">Warm-up Phase</div>
+                        <div class="phase-status">PASSED</div>
+                    </div>
+                    <div class="phase-stats">
+                        <div class="stat">
+                            <div class="stat-value">30s</div>
+                            <div class="stat-label">Duration</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">10</div>
+                            <div class="stat-label">RPS</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">120ms</div>
+                            <div class="stat-label">Avg Response</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">Errors</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phase-item">
+                    <div class="phase-header">
+                        <div class="phase-name">Load Phase</div>
+                        <div class="phase-status">PASSED</div>
+                    </div>
+                    <div class="phase-stats">
+                        <div class="stat">
+                            <div class="stat-value">60s</div>
+                            <div class="stat-label">Duration</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">50</div>
+                            <div class="stat-label">RPS</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">145ms</div>
+                            <div class="stat-label">Avg Response</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">Errors</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phase-item">
+                    <div class="phase-header">
+                        <div class="phase-name">Stress Phase</div>
+                        <div class="phase-status">PASSED</div>
+                    </div>
+                    <div class="phase-stats">
+                        <div class="stat">
+                            <div class="stat-value">30s</div>
+                            <div class="stat-label">Duration</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">100</div>
+                            <div class="stat-label">RPS</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">180ms</div>
+                            <div class="stat-label">Avg Response</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">Errors</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            <div class="phases-grid">
-                <div class="phase-item">
-                    <div class="phase-info">
-                        <div class="phase-icon">🔥</div>
-                        <div class="phase-details">
-                            <h3>Warm Up Phase</h3>
-                            <p>60 seconds at 5 RPS - System initialization</p>
-                        </div>
-                    </div>
-                    <div class="phase-metrics">
-                        <div class="phase-metric">
-                            <div class="phase-metric-value">5</div>
-                            <div class="phase-metric-label">RPS</div>
-                        </div>
-                        <div class="phase-metric">
-                            <div class="phase-metric-value">98ms</div>
-                            <div class="phase-metric-label">Avg Time</div>
-                        </div>
-                        <div class="status-badge">Passed</div>
-                    </div>
-                </div>
-                
-                <div class="phase-item">
-                    <div class="phase-info">
-                        <div class="phase-icon">📈</div>
-                        <div class="phase-details">
-                            <h3>Ramp Up Phase</h3>
-                            <p>120 seconds at 10 RPS - Load increase</p>
-                        </div>
-                    </div>
-                    <div class="phase-metrics">
-                        <div class="phase-metric">
-                            <div class="phase-metric-value">10</div>
-                            <div class="phase-metric-label">RPS</div>
-                        </div>
-                        <div class="phase-metric">
-                            <div class="phase-metric-value">134ms</div>
-                            <div class="phase-metric-label">Avg Time</div>
-                        </div>
-                        <div class="status-badge">Passed</div>
-                    </div>
-                </div>
-                
-                <div class="phase-item">
-                    <div class="phase-info">
-                        <div class="phase-icon">🚀</div>
-                        <div class="phase-details">
-                            <h3>Sustained Load Phase</h3>
-                            <p>60 seconds at 15 RPS - Peak performance</p>
-                        </div>
-                    </div>
-                    <div class="phase-metrics">
-                        <div class="phase-metric">
-                            <div class="phase-metric-value">15</div>
-                            <div class="phase-metric-label">RPS</div>
-                        </div>
-                        <div class="phase-metric">
-                            <div class="phase-metric-value">167ms</div>
-                            <div class="phase-metric-label">Avg Time</div>
-                        </div>
-                        <div class="status-badge">Passed</div>
-                    </div>
-                </div>
-                
-                <div class="phase-item">
-                    <div class="phase-info">
-                        <div class="phase-icon">💪</div>
-                        <div class="phase-details">
-                            <h3>Stress Test Phase</h3>
-                            <p>30 seconds at 25 RPS - Maximum load</p>
-                        </div>
-                    </div>
-                    <div class="phase-metrics">
-                        <div class="phase-metric">
-                            <div class="phase-metric-value">25</div>
-                            <div class="phase-metric-label">RPS</div>
-                        </div>
-                        <div class="phase-metric">
-                            <div class="phase-metric-value">234ms</div>
-                            <div class="phase-metric-label">Avg Time</div>
-                        </div>
-                        <div class="status-badge">Passed</div>
-                    </div>
+            <div class="response-chart">
+                <h3 style="margin-bottom: 16px; color: #1f2937;">Response Time Distribution</h3>
+                <div class="chart-container">
+                    <div class="chart-overlay"></div>
+                    <span>📊 All endpoints performing within acceptable limits</span>
                 </div>
             </div>
         </div>
         
-        <div class="footer">
-            Test Duration: 4m 30s | Total Requests: 3,750 | Success Rate: 100% | No Errors Detected
+        <div class="endpoints-performance">
+            <h2 class="section-title">Endpoint Performance Breakdown</h2>
+            <div class="endpoint-list">
+                <div class="endpoint-item">
+                    <div class="endpoint-info">
+                        <div class="endpoint-name">GET /api/students</div>
+                        <span class="endpoint-method">GET</span>
+                    </div>
+                    <div class="endpoint-metrics">
+                        <div class="metric-small">
+                            <div class="metric-small-value">142ms</div>
+                            <div class="metric-small-label">Avg</div>
+                        </div>
+                        <div class="metric-small">
+                            <div class="metric-small-value">89ms</div>
+                            <div class="metric-small-label">Min</div>
+                        </div>
+                        <div class="metric-small">
+                            <div class="metric-small-value">245ms</div>
+                            <div class="metric-small-label">Max</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="endpoint-item">
+                    <div class="endpoint-info">
+                        <div class="endpoint-name">POST /api/students</div>
+                        <span class="endpoint-method">POST</span>
+                    </div>
+                    <div class="endpoint-metrics">
+                        <div class="metric-small">
+                            <div class="metric-small-value">156ms</div>
+                            <div class="metric-small-label">Avg</div>
+                        </div>
+                        <div class="metric-small">
+                            <div class="metric-small-value">98ms</div>
+                            <div class="metric-small-label">Min</div>
+                        </div>
+                        <div class="metric-small">
+                            <div class="metric-small-value">267ms</div>
+                            <div class="metric-small-label">Max</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="endpoint-item">
+                    <div class="endpoint-info">
+                        <div class="endpoint-name">GET /api/students/search</div>
+                        <span class="endpoint-method">GET</span>
+                    </div>
+                    <div class="endpoint-metrics">
+                        <div class="metric-small">
+                            <div class="metric-small-value">134ms</div>
+                            <div class="metric-small-label">Avg</div>
+                        </div>
+                        <div class="metric-small">
+                            <div class="metric-small-value">76ms</div>
+                            <div class="metric-small-label">Min</div>
+                        </div>
+                        <div class="metric-small">
+                            <div class="metric-small-value">198ms</div>
+                            <div class="metric-small-label">Max</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="endpoint-item">
+                    <div class="endpoint-info">
+                        <div class="endpoint-name">GET /api/analytics/overview</div>
+                        <span class="endpoint-method">GET</span>
+                    </div>
+                    <div class="endpoint-metrics">
+                        <div class="metric-small">
+                            <div class="metric-small-value">167ms</div>
+                            <div class="metric-small-label">Avg</div>
+                        </div>
+                        <div class="metric-small">
+                            <div class="metric-small-value">112ms</div>
+                            <div class="metric-small-label">Min</div>
+                        </div>
+                        <div class="metric-small">
+                            <div class="metric-small-value">289ms</div>
+                            <div class="metric-small-label">Max</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

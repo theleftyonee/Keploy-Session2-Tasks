@@ -14,206 +14,143 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #0d1117;
-            color: #e6edf3;
+            color: #c9d1d9;
             min-height: 100vh;
             padding: 20px;
         }
         
-        .container {
-            max-width: 1200px;
+        .pipeline {
+            max-width: 1000px;
             margin: 0 auto;
             background: #161b22;
-            border-radius: 12px;
             border: 1px solid #30363d;
+            border-radius: 6px;
             overflow: hidden;
         }
         
         .header {
             background: #21262d;
-            padding: 20px;
+            padding: 16px 20px;
             border-bottom: 1px solid #30363d;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 12px;
         }
         
-        .header-left {
-            display: flex;
-            align-items: center;
-        }
-        
-        .repo-icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 8px;
-            fill: #7d8590;
-        }
-        
-        .repo-name {
-            font-size: 16px;
-            font-weight: 600;
-            color: #58a6ff;
-            text-decoration: none;
-        }
-        
-        .workflow-status {
-            display: flex;
-            align-items: center;
+        .workflow-icon {
+            width: 16px;
+            height: 16px;
             background: #238636;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-        
-        .workflow-status::before {
-            content: "✓";
-            margin-right: 6px;
-            font-weight: bold;
-        }
-        
-        .workflow-header {
-            padding: 20px;
-            border-bottom: 1px solid #30363d;
+            font-size: 10px;
         }
         
         .workflow-title {
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 600;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
+            color: #f0f6fc;
         }
         
-        .workflow-title::before {
-            content: "🚀";
-            margin-right: 10px;
+        .workflow-status {
+            margin-left: auto;
+            background: #238636;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
         }
         
-        .workflow-meta {
-            color: #7d8590;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        
-        .jobs-container {
+        .job-list {
             padding: 20px;
         }
         
-        .job {
-            background: #0d1117;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            margin-bottom: 16px;
-            overflow: hidden;
-        }
-        
-        .job-header {
-            background: #21262d;
-            padding: 16px;
+        .job-item {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #21262d;
         }
         
-        .job-title {
-            display: flex;
-            align-items: center;
-            font-weight: 600;
-        }
-        
-        .job-icon {
-            width: 16px;
-            height: 16px;
-            margin-right: 8px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            color: white;
-        }
-        
-        .job-icon.success {
-            background: #238636;
-        }
-        
-        .job-duration {
-            color: #7d8590;
-            font-size: 14px;
-        }
-        
-        .steps {
-            padding: 0;
-        }
-        
-        .step {
-            padding: 12px 16px;
-            border-bottom: 1px solid #30363d;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .step:last-child {
+        .job-item:last-child {
             border-bottom: none;
         }
         
-        .step-info {
-            display: flex;
-            align-items: center;
-        }
-        
-        .step-icon {
-            width: 16px;
-            height: 16px;
-            margin-right: 12px;
+        .job-status {
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
+            background: #238636;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 10px;
             color: white;
-            background: #238636;
+            font-size: 12px;
+            margin-right: 12px;
         }
         
-        .step-name {
+        .job-details {
+            flex: 1;
+        }
+        
+        .job-name {
+            font-weight: 600;
+            color: #f0f6fc;
+            margin-bottom: 4px;
+        }
+        
+        .job-description {
+            font-size: 14px;
+            color: #8b949e;
+        }
+        
+        .job-duration {
+            color: #8b949e;
+            font-size: 14px;
+            margin-left: auto;
+        }
+        
+        .step-list {
+            margin-left: 32px;
+            margin-top: 8px;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: center;
+            padding: 4px 0;
             font-size: 14px;
         }
         
-        .step-duration {
-            color: #7d8590;
-            font-size: 12px;
+        .step-icon {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #238636;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 8px;
         }
         
         .summary {
-            background: #0f1419;
-            border: 1px solid #238636;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-        
-        .summary-title {
-            color: #238636;
-            font-weight: 600;
-            margin-bottom: 12px;
+            background: #0d1117;
+            padding: 16px 20px;
+            border-top: 1px solid #30363d;
             display: flex;
+            justify-content: space-between;
             align-items: center;
         }
         
-        .summary-title::before {
-            content: "✅";
-            margin-right: 8px;
-        }
-        
         .summary-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 16px;
+            display: flex;
+            gap: 24px;
         }
         
         .stat {
@@ -221,185 +158,149 @@
         }
         
         .stat-value {
-            font-size: 24px;
-            font-weight: 700;
+            font-size: 18px;
+            font-weight: bold;
             color: #238636;
         }
         
         .stat-label {
             font-size: 12px;
-            color: #7d8590;
+            color: #8b949e;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+        }
+        
+        .total-time {
+            color: #8b949e;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="pipeline">
         <div class="header">
-            <div class="header-left">
-                <svg class="repo-icon" viewBox="0 0 16 16">
-                    <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"/>
-                </svg>
-                <a href="#" class="repo-name">studenthub-dashboard</a>
-            </div>
-            <div class="workflow-status">
-                All checks passed
-            </div>
+            <div class="workflow-icon">✓</div>
+            <div class="workflow-title">StudentHub API Testing with Keploy</div>
+            <div class="workflow-status">Success</div>
         </div>
         
-        <div class="workflow-header">
-            <div class="workflow-title">API Testing with Keploy</div>
-            <div class="workflow-meta">
-                <span>🔄 Workflow run #47</span>
-                <span>📅 Dec 22, 2024</span>
-                <span>⏱️ 4m 32s</span>
-                <span>🌿 main branch</span>
-            </div>
-        </div>
-        
-        <div class="jobs-container">
-            <div class="job">
-                <div class="job-header">
-                    <div class="job-title">
-                        <div class="job-icon success">✓</div>
-                        API Testing
-                    </div>
-                    <div class="job-duration">2m 15s</div>
-                </div>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-info">
+        <div class="job-list">
+            <div class="job-item">
+                <div class="job-status">✓</div>
+                <div class="job-details">
+                    <div class="job-name">Setup & Build</div>
+                    <div class="job-description">Environment setup and application build</div>
+                    <div class="step-list">
+                        <div class="step-item">
                             <div class="step-icon">✓</div>
-                            <div class="step-name">Checkout code</div>
+                            <span>Checkout code</span>
                         </div>
-                        <div class="step-duration">3s</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-info">
+                        <div class="step-item">
                             <div class="step-icon">✓</div>
-                            <div class="step-name">Setup Node.js</div>
+                            <span>Setup Node.js 18</span>
                         </div>
-                        <div class="step-duration">8s</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-info">
+                        <div class="step-item">
                             <div class="step-icon">✓</div>
-                            <div class="step-name">Install dependencies</div>
+                            <span>Install dependencies</span>
                         </div>
-                        <div class="step-duration">24s</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-info">
+                        <div class="step-item">
                             <div class="step-icon">✓</div>
-                            <div class="step-name">Build application</div>
+                            <span>Build application</span>
                         </div>
-                        <div class="step-duration">31s</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-info">
-                            <div class="step-icon">✓</div>
-                            <div class="step-name">Start application</div>
-                        </div>
-                        <div class="step-duration">12s</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-info">
-                            <div class="step-icon">✓</div>
-                            <div class="step-name">Install Keploy</div>
-                        </div>
-                        <div class="step-duration">15s</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-info">
-                            <div class="step-icon">✓</div>
-                            <div class="step-name">Run Keploy API Tests</div>
-                        </div>
-                        <div class="step-duration">42s</div>
                     </div>
                 </div>
+                <div class="job-duration">1m 23s</div>
             </div>
             
-            <div class="job">
-                <div class="job-header">
-                    <div class="job-title">
-                        <div class="job-icon success">✓</div>
-                        Performance Testing
-                    </div>
-                    <div class="job-duration">1m 45s</div>
-                </div>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-info">
+            <div class="job-item">
+                <div class="job-status">✓</div>
+                <div class="job-details">
+                    <div class="job-name">Keploy AI Testing</div>
+                    <div class="job-description">AI-powered API test execution</div>
+                    <div class="step-list">
+                        <div class="step-item">
                             <div class="step-icon">✓</div>
-                            <div class="step-name">Setup environment</div>
+                            <span>Install Keploy CLI</span>
                         </div>
-                        <div class="step-duration">18s</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-info">
+                        <div class="step-item">
                             <div class="step-icon">✓</div>
-                            <div class="step-name">Install Artillery</div>
+                            <span>Start application</span>
                         </div>
-                        <div class="step-duration">12s</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-info">
+                        <div class="step-item">
                             <div class="step-icon">✓</div>
-                            <div class="step-name">Run performance tests</div>
+                            <span>Run Keploy tests</span>
                         </div>
-                        <div class="step-duration">1m 15s</div>
+                        <div class="step-item">
+                            <div class="step-icon">✓</div>
+                            <span>Generate test reports</span>
+                        </div>
                     </div>
                 </div>
+                <div class="job-duration">2m 15s</div>
             </div>
             
-            <div class="job">
-                <div class="job-header">
-                    <div class="job-title">
-                        <div class="job-icon success">✓</div>
-                        Security Testing
-                    </div>
-                    <div class="job-duration">32s</div>
-                </div>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-info">
+            <div class="job-item">
+                <div class="job-status">✓</div>
+                <div class="job-details">
+                    <div class="job-name">Performance Testing</div>
+                    <div class="job-description">Load testing with Artillery</div>
+                    <div class="step-list">
+                        <div class="step-item">
                             <div class="step-icon">✓</div>
-                            <div class="step-name">Security vulnerability scan</div>
+                            <span>Install Artillery</span>
                         </div>
-                        <div class="step-duration">18s</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-info">
+                        <div class="step-item">
                             <div class="step-icon">✓</div>
-                            <div class="step-name">API security tests</div>
+                            <span>Run load tests</span>
                         </div>
-                        <div class="step-duration">14s</div>
+                        <div class="step-item">
+                            <div class="step-icon">✓</div>
+                            <span>Validate performance metrics</span>
+                        </div>
                     </div>
                 </div>
+                <div class="job-duration">45s</div>
+            </div>
+            
+            <div class="job-item">
+                <div class="job-status">✓</div>
+                <div class="job-details">
+                    <div class="job-name">Security Testing</div>
+                    <div class="job-description">Vulnerability scanning and security checks</div>
+                    <div class="step-list">
+                        <div class="step-item">
+                            <div class="step-icon">✓</div>
+                            <span>Run npm audit</span>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-icon">✓</div>
+                            <span>Trivy security scan</span>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-icon">✓</div>
+                            <span>Upload security reports</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="job-duration">32s</div>
             </div>
         </div>
         
         <div class="summary">
-            <div class="summary-title">Pipeline Summary</div>
             <div class="summary-stats">
                 <div class="stat">
                     <div class="stat-value">12</div>
-                    <div class="stat-label">API Tests Passed</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">145ms</div>
-                    <div class="stat-label">Avg Response Time</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">95%</div>
-                    <div class="stat-label">API Coverage</div>
+                    <div class="stat-label">Tests Passed</div>
                 </div>
                 <div class="stat">
                     <div class="stat-value">0</div>
-                    <div class="stat-label">Security Issues</div>
+                    <div class="stat-label">Failed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Success Rate</div>
                 </div>
             </div>
+            <div class="total-time">Total duration: 4m 32s</div>
         </div>
     </div>
 </body>

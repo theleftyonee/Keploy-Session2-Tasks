@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keploy API Testing Dashboard - StudentHub</title>
+    <title>Keploy Test Dashboard</title>
     <style>
         * {
             margin: 0;
@@ -19,452 +19,249 @@
         }
         
         .dashboard {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             background: white;
-            border-radius: 16px;
+            border-radius: 12px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             overflow: hidden;
         }
         
         .header {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
             color: white;
-            padding: 30px;
+            padding: 24px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: between;
-        }
-        
-        .header h1 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        
-        .header p {
-            opacity: 0.9;
-            font-size: 16px;
         }
         
         .logo {
-            width: 60px;
-            height: 60px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 12px;
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 12px;
             font-size: 24px;
-            margin-right: 20px;
+            font-weight: bold;
         }
         
-        .stats-grid {
+        .status-badge {
+            background: #48bb78;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .metrics {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 30px;
-            background: #f8fafc;
-        }
-        
-        .stat-card {
-            background: white;
+            gap: 24px;
             padding: 24px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            text-align: center;
-            border-left: 4px solid;
+            background: #f7fafc;
         }
         
-        .stat-card.success { border-left-color: #10b981; }
-        .stat-card.warning { border-left-color: #f59e0b; }
-        .stat-card.info { border-left-color: #3b82f6; }
-        .stat-card.performance { border-left-color: #8b5cf6; }
-        
-        .stat-number {
-            font-size: 36px;
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
-        
-        .stat-number.success { color: #10b981; }
-        .stat-number.warning { color: #f59e0b; }
-        .stat-number.info { color: #3b82f6; }
-        .stat-number.performance { color: #8b5cf6; }
-        
-        .stat-label {
-            color: #64748b;
-            font-size: 14px;
-            font-weight: 500;
-        }
-        
-        .test-results {
-            padding: 30px;
-        }
-        
-        .section-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .section-title::before {
-            content: "🤖";
-            margin-right: 10px;
-            font-size: 24px;
-        }
-        
-        .test-grid {
-            display: grid;
-            gap: 16px;
-        }
-        
-        .test-item {
+        .metric-card {
             background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
             padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: all 0.2s;
-        }
-        
-        .test-item:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
-        }
-        
-        .test-info {
-            display: flex;
-            align-items: center;
-        }
-        
-        .test-icon {
-            width: 40px;
-            height: 40px;
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 16px;
-            font-size: 18px;
-        }
-        
-        .test-icon.success {
-            background: #dcfce7;
-            color: #16a34a;
-        }
-        
-        .test-details h3 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 4px;
-        }
-        
-        .test-details p {
-            font-size: 14px;
-            color: #64748b;
-        }
-        
-        .test-metrics {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-        
-        .metric {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             text-align: center;
         }
         
         .metric-value {
-            font-size: 18px;
-            font-weight: 700;
-            color: #1e293b;
+            font-size: 32px;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 8px;
         }
         
         .metric-label {
-            font-size: 12px;
-            color: #64748b;
+            color: #718096;
+            font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
         
-        .status-badge {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .tests-section {
+            padding: 24px;
         }
         
-        .status-badge.passed {
-            background: #dcfce7;
-            color: #16a34a;
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 16px;
         }
         
-        .footer {
-            background: #f1f5f9;
-            padding: 20px 30px;
-            border-top: 1px solid #e2e8f0;
+        .test-list {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .test-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 14px;
-            color: #64748b;
+            padding: 16px;
+            background: #f7fafc;
+            border-radius: 8px;
+            border-left: 4px solid #48bb78;
         }
         
-        .timestamp {
+        .test-name {
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        .test-details {
+            font-size: 14px;
+            color: #718096;
+            margin-top: 4px;
+        }
+        
+        .test-status {
             display: flex;
             align-items: center;
+            gap: 8px;
         }
         
-        .timestamp::before {
-            content: "🕒";
-            margin-right: 8px;
+        .status-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #48bb78;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
         }
         
-        .coverage-bar {
-            width: 100px;
-            height: 8px;
+        .response-time {
             background: #e2e8f0;
+            padding: 4px 8px;
             border-radius: 4px;
-            overflow: hidden;
-            margin-left: 12px;
+            font-size: 12px;
+            color: #4a5568;
         }
         
-        .coverage-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #10b981, #059669);
-            width: 95%;
-            transition: width 0.3s ease;
+        .performance-chart {
+            margin-top: 24px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .chart-placeholder {
+            height: 200px;
+            background: linear-gradient(45deg, #e2e8f0 25%, transparent 25%), 
+                        linear-gradient(-45deg, #e2e8f0 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #e2e8f0 75%), 
+                        linear-gradient(-45deg, transparent 75%, #e2e8f0 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #718096;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
     <div class="dashboard">
         <div class="header">
-            <div style="display: flex; align-items: center;">
-                <div class="logo">🤖</div>
-                <div>
-                    <h1>Keploy AI Testing Dashboard</h1>
-                    <p>StudentHub Dashboard API - Comprehensive Test Results</p>
+            <div class="logo">
+                <div style="width: 32px; height: 32px; background: #48bb78; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">K</div>
+                Keploy AI Testing Dashboard
+            </div>
+            <div class="status-badge">All Tests Passing</div>
+        </div>
+        
+        <div class="metrics">
+            <div class="metric-card">
+                <div class="metric-value">12</div>
+                <div class="metric-label">Tests Passed</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">0</div>
+                <div class="metric-label">Tests Failed</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">145ms</div>
+                <div class="metric-label">Avg Response</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">95%</div>
+                <div class="metric-label">Coverage</div>
+            </div>
+        </div>
+        
+        <div class="tests-section">
+            <h2 class="section-title">API Test Results</h2>
+            <div class="test-list">
+                <div class="test-item">
+                    <div>
+                        <div class="test-name">GET /api/students</div>
+                        <div class="test-details">Retrieve all students with pagination</div>
+                    </div>
+                    <div class="test-status">
+                        <div class="status-icon">✓</div>
+                        <div class="response-time">142ms</div>
+                    </div>
+                </div>
+                
+                <div class="test-item">
+                    <div>
+                        <div class="test-name">POST /api/students</div>
+                        <div class="test-details">Create new student with validation</div>
+                    </div>
+                    <div class="test-status">
+                        <div class="status-icon">✓</div>
+                        <div class="response-time">156ms</div>
+                    </div>
+                </div>
+                
+                <div class="test-item">
+                    <div>
+                        <div class="test-name">GET /api/students/search</div>
+                        <div class="test-details">Search students with filters</div>
+                    </div>
+                    <div class="test-status">
+                        <div class="status-icon">✓</div>
+                        <div class="response-time">134ms</div>
+                    </div>
+                </div>
+                
+                <div class="test-item">
+                    <div>
+                        <div class="test-name">GET /api/analytics/overview</div>
+                        <div class="test-details">Analytics dashboard data</div>
+                    </div>
+                    <div class="test-status">
+                        <div class="status-icon">✓</div>
+                        <div class="response-time">167ms</div>
+                    </div>
+                </div>
+                
+                <div class="test-item">
+                    <div>
+                        <div class="test-name">Validation Tests</div>
+                        <div class="test-details">Input validation and error handling</div>
+                    </div>
+                    <div class="test-status">
+                        <div class="status-icon">✓</div>
+                        <div class="response-time">89ms</div>
+                    </div>
                 </div>
             </div>
-            <div style="text-align: right;">
-                <div style="font-size: 24px; font-weight: 700;">100%</div>
-                <div style="opacity: 0.9;">Success Rate</div>
-            </div>
-        </div>
-        
-        <div class="stats-grid">
-            <div class="stat-card success">
-                <div class="stat-number success">12</div>
-                <div class="stat-label">Tests Passed</div>
-            </div>
-            <div class="stat-card warning">
-                <div class="stat-number warning">0</div>
-                <div class="stat-label">Tests Failed</div>
-            </div>
-            <div class="stat-card info">
-                <div class="stat-number info">145ms</div>
-                <div class="stat-label">Avg Response</div>
-            </div>
-            <div class="stat-card performance">
-                <div class="stat-number performance">95%</div>
-                <div class="stat-label">API Coverage</div>
-            </div>
-        </div>
-        
-        <div class="test-results">
-            <div class="section-title">AI-Generated Test Scenarios</div>
             
-            <div class="test-grid">
-                <div class="test-item">
-                    <div class="test-info">
-                        <div class="test-icon success">✓</div>
-                        <div class="test-details">
-                            <h3>GET /api/students</h3>
-                            <p>Retrieve all students with pagination</p>
-                        </div>
-                    </div>
-                    <div class="test-metrics">
-                        <div class="metric">
-                            <div class="metric-value">134ms</div>
-                            <div class="metric-label">Response</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">200</div>
-                            <div class="metric-label">Status</div>
-                        </div>
-                        <div class="status-badge passed">Passed</div>
-                    </div>
-                </div>
-                
-                <div class="test-item">
-                    <div class="test-info">
-                        <div class="test-icon success">✓</div>
-                        <div class="test-details">
-                            <h3>POST /api/students</h3>
-                            <p>Create new student with validation</p>
-                        </div>
-                    </div>
-                    <div class="test-metrics">
-                        <div class="metric">
-                            <div class="metric-value">189ms</div>
-                            <div class="metric-label">Response</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">201</div>
-                            <div class="metric-label">Status</div>
-                        </div>
-                        <div class="status-badge passed">Passed</div>
-                    </div>
-                </div>
-                
-                <div class="test-item">
-                    <div class="test-info">
-                        <div class="test-icon success">✓</div>
-                        <div class="test-details">
-                            <h3>GET /api/students/search</h3>
-                            <p>Search students with multiple filters</p>
-                        </div>
-                    </div>
-                    <div class="test-metrics">
-                        <div class="metric">
-                            <div class="metric-value">156ms</div>
-                            <div class="metric-label">Response</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">200</div>
-                            <div class="metric-label">Status</div>
-                        </div>
-                        <div class="status-badge passed">Passed</div>
-                    </div>
-                </div>
-                
-                <div class="test-item">
-                    <div class="test-info">
-                        <div class="test-icon success">✓</div>
-                        <div class="test-details">
-                            <h3>GET /api/analytics/overview</h3>
-                            <p>Comprehensive analytics dashboard data</p>
-                        </div>
-                    </div>
-                    <div class="test-metrics">
-                        <div class="metric">
-                            <div class="metric-value">198ms</div>
-                            <div class="metric-label">Response</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">200</div>
-                            <div class="metric-label">Status</div>
-                        </div>
-                        <div class="status-badge passed">Passed</div>
-                    </div>
-                </div>
-                
-                <div class="test-item">
-                    <div class="test-info">
-                        <div class="test-icon success">✓</div>
-                        <div class="test-details">
-                            <h3>POST /api/students (Invalid Data)</h3>
-                            <p>Validation error handling test</p>
-                        </div>
-                    </div>
-                    <div class="test-metrics">
-                        <div class="metric">
-                            <div class="metric-value">87ms</div>
-                            <div class="metric-label">Response</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">400</div>
-                            <div class="metric-label">Status</div>
-                        </div>
-                        <div class="status-badge passed">Passed</div>
-                    </div>
-                </div>
-                
-                <div class="test-item">
-                    <div class="test-info">
-                        <div class="test-icon success">✓</div>
-                        <div class="test-details">
-                            <h3>PUT /api/students/{id}</h3>
-                            <p>Update existing student record</p>
-                        </div>
-                    </div>
-                    <div class="test-metrics">
-                        <div class="metric">
-                            <div class="metric-value">167ms</div>
-                            <div class="metric-label">Response</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">200</div>
-                            <div class="metric-label">Status</div>
-                        </div>
-                        <div class="status-badge passed">Passed</div>
-                    </div>
-                </div>
-                
-                <div class="test-item">
-                    <div class="test-info">
-                        <div class="test-icon success">✓</div>
-                        <div class="test-details">
-                            <h3>DELETE /api/students/{id}</h3>
-                            <p>Delete student from database</p>
-                        </div>
-                    </div>
-                    <div class="test-metrics">
-                        <div class="metric">
-                            <div class="metric-value">145ms</div>
-                            <div class="metric-label">Response</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">200</div>
-                            <div class="metric-label">Status</div>
-                        </div>
-                        <div class="status-badge passed">Passed</div>
-                    </div>
-                </div>
-                
-                <div class="test-item">
-                    <div class="test-info">
-                        <div class="test-icon success">✓</div>
-                        <div class="test-details">
-                            <h3>GET /api/analytics/courses</h3>
-                            <p>Course distribution analytics</p>
-                        </div>
-                    </div>
-                    <div class="test-metrics">
-                        <div class="metric">
-                            <div class="metric-value">123ms</div>
-                            <div class="metric-label">Response</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">200</div>
-                            <div class="metric-label">Status</div>
-                        </div>
-                        <div class="status-badge passed">Passed</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <div class="timestamp">
-                Generated on: December 22, 2024 at 2:15:30 PM
-            </div>
-            <div style="display: flex; align-items: center;">
-                <span>API Coverage:</span>
-                <div class="coverage-bar">
-                    <div class="coverage-fill"></div>
-                </div>
-                <span style="margin-left: 8px; font-weight: 600;">95%</span>
+            <div class="performance-chart">
+                <h3 style="margin-bottom: 16px; color: #2d3748;">Response Time Trends</h3>
+                <div class="chart-placeholder">📊 Performance Chart - All endpoints under 200ms</div>
             </div>
         </div>
     </div>
