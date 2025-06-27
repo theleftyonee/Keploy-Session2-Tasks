@@ -1,0 +1,224 @@
+version: api.keploy.io/v1beta1
+kind: Http
+metadata:
+  name: get-all-students
+spec:
+  request:
+    method: GET
+    url: http://localhost:3000/api/students
+    header:
+      Content-Type: application/json
+      Accept: application/json
+  response:
+    status_code: 200
+    header:
+      Content-Type: application/json
+    body:
+      data: []
+      error: null
+
+---
+version: api.keploy.io/v1beta1
+kind: Http
+metadata:
+  name: create-student-valid
+spec:
+  request:
+    method: POST
+    url: http://localhost:3000/api/students
+    header:
+      Content-Type: application/json
+      Accept: application/json
+    body: |
+      {
+        "name": "Keploy Test Student",
+        "age": 23,
+        "course": "Computer Science"
+      }
+  response:
+    status_code: 201
+    header:
+      Content-Type: application/json
+    body:
+      data:
+        name: "Keploy Test Student"
+        age: 23
+        course: "Computer Science"
+      error: null
+
+---
+version: api.keploy.io/v1beta1
+kind: Http
+metadata:
+  name: create-student-invalid-name
+spec:
+  request:
+    method: POST
+    url: http://localhost:3000/api/students
+    header:
+      Content-Type: application/json
+      Accept: application/json
+    body: |
+      {
+        "name": "",
+        "age": 23,
+        "course": "Computer Science"
+      }
+  response:
+    status_code: 400
+    header:
+      Content-Type: application/json
+    body:
+      data: null
+      error: "Name is required"
+
+---
+version: api.keploy.io/v1beta1
+kind: Http
+metadata:
+  name: create-student-invalid-age
+spec:
+  request:
+    method: POST
+    url: http://localhost:3000/api/students
+    header:
+      Content-Type: application/json
+      Accept: application/json
+    body: |
+      {
+        "name": "Test Student",
+        "age": 0,
+        "course": "Computer Science"
+      }
+  response:
+    status_code: 400
+    header:
+      Content-Type: application/json
+    body:
+      data: null
+      error: "Age must be between 1 and 100"
+
+---
+version: api.keploy.io/v1beta1
+kind: Http
+metadata:
+  name: search-students-by-name
+spec:
+  request:
+    method: GET
+    url: http://localhost:3000/api/students/search?q=Keploy
+    header:
+      Content-Type: application/json
+      Accept: application/json
+  response:
+    status_code: 200
+    header:
+      Content-Type: application/json
+    body:
+      data: []
+      error: null
+
+---
+version: api.keploy.io/v1beta1
+kind: Http
+metadata:
+  name: search-students-by-course
+spec:
+  request:
+    method: GET
+    url: http://localhost:3000/api/students/search?course=Computer%20Science
+    header:
+      Content-Type: application/json
+      Accept: application/json
+  response:
+    status_code: 200
+    header:
+      Content-Type: application/json
+    body:
+      data: []
+      error: null
+
+---
+version: api.keploy.io/v1beta1
+kind: Http
+metadata:
+  name: get-analytics-overview
+spec:
+  request:
+    method: GET
+    url: http://localhost:3000/api/analytics/overview
+    header:
+      Content-Type: application/json
+      Accept: application/json
+  response:
+    status_code: 200
+    header:
+      Content-Type: application/json
+    body:
+      data:
+        totalStudents: 0
+        averageAge: 0
+        mostPopularCourse: "N/A"
+        courseDistribution: []
+        ageDistribution: {}
+      error: null
+
+---
+version: api.keploy.io/v1beta1
+kind: Http
+metadata:
+  name: get-course-distribution
+spec:
+  request:
+    method: GET
+    url: http://localhost:3000/api/analytics/courses
+    header:
+      Content-Type: application/json
+      Accept: application/json
+  response:
+    status_code: 200
+    header:
+      Content-Type: application/json
+    body:
+      data: []
+      error: null
+
+---
+version: api.keploy.io/v1beta1
+kind: Http
+metadata:
+  name: get-age-distribution
+spec:
+  request:
+    method: GET
+    url: http://localhost:3000/api/analytics/age-groups
+    header:
+      Content-Type: application/json
+      Accept: application/json
+  response:
+    status_code: 200
+    header:
+      Content-Type: application/json
+    body:
+      data: {}
+      error: null
+
+---
+version: api.keploy.io/v1beta1
+kind: Http
+metadata:
+  name: test-nonexistent-endpoint
+spec:
+  request:
+    method: GET
+    url: http://localhost:3000/api/nonexistent
+    header:
+      Content-Type: application/json
+      Accept: application/json
+  response:
+    status_code: 404
+    header:
+      Content-Type: application/json
+    body:
+      data: null
+      error: "Not Found"

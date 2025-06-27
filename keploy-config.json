@@ -1,0 +1,45 @@
+{
+  "version": "api.keploy.io/v1beta1",
+  "kind": "Config",
+  "metadata": {
+    "name": "studenthub-api-tests"
+  },
+  "spec": {
+    "app": {
+      "name": "studenthub-dashboard",
+      "port": 3000,
+      "host": "localhost"
+    },
+    "server": {
+      "port": 6789,
+      "host": "0.0.0.0"
+    },
+    "test": {
+      "path": "./keploy-tests",
+      "globalNoise": {
+        "global": {
+          "body": {
+            "created_at": [],
+            "id": []
+          },
+          "header": {
+            "date": [],
+            "content-length": [],
+            "x-powered-by": []
+          }
+        }
+      },
+      "normalize": {
+        "header": {
+          "date": [],
+          "content-length": [],
+          "connection": [],
+          "keep-alive": []
+        }
+      }
+    },
+    "record": {
+      "path": "./keploy-mocks"
+    }
+  }
+}
