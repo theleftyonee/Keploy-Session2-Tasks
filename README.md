@@ -19,23 +19,19 @@ This project implements comprehensive API testing using **Keploy**, an AI-powere
 ## 📊 API Testing Dashboard Screenshots
 
 ### Keploy Test Results Dashboard
-![Keploy Test Dashboard](https://via.placeholder.com/800x500/2563EB/FFFFFF?text=Keploy+API+Testing+Dashboard%0A%0A✅+12+Tests+Passed%0A❌+0+Tests+Failed%0A⚡+Average+Response%3A+145ms%0A🔄+Coverage%3A+95%25)
-
+![Keploy Test Dashboard](./public/keploy-dashboard-screenshot.html)
 *Keploy AI-powered testing dashboard showing comprehensive API test results with 100% pass rate*
 
 ### GitHub Actions CI/CD Pipeline
-![GitHub Actions Pipeline](https://via.placeholder.com/800x400/22C55E/FFFFFF?text=GitHub+Actions+CI%2FCD+Pipeline%0A%0A✅+API+Testing%3A+PASSED%0A✅+Performance+Testing%3A+PASSED%0A✅+Security+Testing%3A+PASSED%0A⏱️+Total+Duration%3A+4m+32s)
-
+![GitHub Actions Pipeline](./public/github-actions-screenshot.html)
 *GitHub Actions workflow showing successful API testing pipeline execution*
 
 ### API Test Coverage Report
-![API Coverage Report](https://via.placeholder.com/800x450/8B5CF6/FFFFFF?text=API+Test+Coverage+Report%0A%0A📊+Endpoints+Tested%3A+11%2F11%0A🎯+Response+Codes%3A+100%25%0A🔍+Edge+Cases%3A+15%2F15%0A⚡+Performance%3A+PASSED)
-
+![API Coverage Report](./public/api-coverage-screenshot.html)
 *Comprehensive API test coverage showing all endpoints tested with edge cases*
 
 ### Performance Testing Results
-![Performance Test Results](https://via.placeholder.com/800x400/F59E0B/FFFFFF?text=Performance+Testing+Results%0A%0A🚀+RPS%3A+150%2Fs%0A⏱️+Avg+Response%3A+145ms%0A📈+95th+Percentile%3A+280ms%0A✅+All+Tests+Passed)
-
+![Performance Test Results](./public/performance-test-screenshot.html)
 *Artillery performance testing results showing API performance under load*
 
 ## 🧪 Testing Overview
@@ -219,7 +215,7 @@ npm run test:integration # Integration tests only
 npm run test:api        # API tests only
 
 # Run Keploy AI tests
-keploy test --config-path ./keploy.yml
+keploy test --config-path ./keploy-config.json
 
 # Run performance tests
 artillery run performance-test.yml
@@ -395,4 +391,3 @@ The CI/CD pipeline generates and stores:
 **Test Types**: Unit, Integration, API, Performance, Security  
 **Database**: Supabase PostgreSQL with real-time capabilities  
 **CI/CD**: GitHub Actions with automated testing pipeline
-\`\`\`

@@ -1,20 +1,22 @@
 openapi: 3.0.3
 info:
   title: StudentHub Dashboard API
-  description: A comprehensive student management system API built with Next.js and Supabase
+  description: |
+    A comprehensive REST API for managing student records with analytics capabilities.
+    Built with Next.js 15, Supabase, and TypeScript for modern web applications.
   version: 1.0.0
   contact:
-    name: StudentHub Team
-    email: support@studenthub.com
+    name: StudentHub API Support
+    email: support@studenthub.dev
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
 
 servers:
-  - url: https://v0-student-hub-dashboard.vercel.app
-    description: Production server
   - url: http://localhost:3000
     description: Development server
+  - url: https://v0-student-hub-dashboard.vercel.app
+    description: Production server
 
 paths:
   /api/students:
@@ -24,38 +26,30 @@ paths:
       tags:
         - Students
       parameters:
+        - name: page
+          in: query
+          description: Page number for pagination
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
         - name: limit
           in: query
-          description: Maximum number of students to return
+          description: Number of students per page
           required: false
           schema:
             type: integer
             minimum: 1
             maximum: 100
             default: 50
-        - name: offset
-          in: query
-          description: Number of students to skip for pagination
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            default: 0
         - name: course
           in: query
-          description: Filter students by course
+          description: Filter by course name
           required: false
           schema:
             type: string
             enum: [Computer Science, AI, Biology, Mathematics, Physics, Chemistry, Engineering]
-        - name: search
-          in: query
-          description: Search students by name
-          required: false
-          schema:
-            type: string
-            minLength: 1
-            maxLength: 255
       responses:
         '200':
           description: Successfully retrieved students
@@ -70,26 +64,21 @@ paths:
                       $ref: '#/components/schemas/Student'
                   error:
                     type: null
-                  count:
-                    type: integer
-                    description: Total number of students
               examples:
                 success:
-                  summary: Successful response
                   value:
                     data:
                       - id: "123e4567-e89b-12d3-a456-426614174000"
                         name: "Alice Johnson"
                         age: 22
                         course: "Computer Science"
-                        created_at: "2024-01-15T10:30:00.000Z"
-                      - id: "987fcdeb-51a2-43d1-9f12-345678901234"
+                        created_at: "2024-01-15T10:30:00Z"
+                      - id: "123e4567-e89b-12d3-a456-426614174001"
                         name: "Bob Smith"
                         age: 20
-                        course: "AI"
-                        created_at: "2024-01-14T15:45:00.000Z"
+                        course: "Mathematics"
+                        created_at: "2024-01-14T09:15:00Z"
                     error: null
-                    count: 2
         '500':
           description: Internal server error
           content:
@@ -99,7 +88,7 @@ paths:
 
     post:
       summary: Create a new student
-      description: Add a new student to the database
+      description: Add a new student to the database with validation
       tags:
         - Students
       requestBody:
@@ -110,11 +99,10 @@ paths:
               $ref: '#/components/schemas/CreateStudentRequest'
             examples:
               valid_student:
-                summary: Valid student data
                 value:
-                  name: "John Doe"
+                  name: "Carol Davis"
                   age: 21
-                  course: "Computer Science"
+                  course: "Physics"
       responses:
         '201':
           description: Student created successfully
@@ -129,33 +117,33 @@ paths:
                     type: null
               examples:
                 success:
-                  summary: Student created
                   value:
                     data:
-                      id: "456e7890-e89b-12d3-a456-426614174001"
-                      name: "John Doe"
+                      id: "123e4567-e89b-12d3-a456-426614174002"
+                      name: "Carol Davis"
                       age: 21
-                      course: "Computer Science"
-                      created_at: "2024-01-16T14:20:00.000Z"
+                      course: "Physics"
+                      created_at: "2024-01-16T14:20:00Z"
                     error: null
         '400':
-          description: Invalid input data
+          description: Validation error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
               examples:
-                validation_error:
-                  summary: Validation failed
+                invalid_name:
                   value:
                     data: null
-                    error: "Name is required and must be at least 1 character"
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+                    error: "Name is required and must not be empty"
+                invalid_age:
+                  value:
+                    data: null
+                    error: "Age must be between 1 and 100"
+                invalid_course:
+                  value:
+                    data: null
+                    error: "Course must be one of the available options"
 
   /api/students/{id}:
     get:
@@ -189,12 +177,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
 
     put:
       summary: Update student
@@ -215,13 +197,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateStudentRequest'
-            examples:
-              update_student:
-                summary: Update student data
-                value:
-                  name: "Jane Doe Updated"
-                  age: 23
-                  course: "AI"
       responses:
         '200':
           description: Student updated successfully
@@ -235,19 +210,13 @@ paths:
                   error:
                     type: null
         '400':
-          description: Invalid input data
+          description: Validation error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
         '404':
           description: Student not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '500':
-          description: Internal server error
           content:
             application/json:
               schema:
@@ -288,12 +257,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
 
   /api/students/search:
     get:
@@ -304,12 +267,12 @@ paths:
       parameters:
         - name: q
           in: query
-          description: Search query for student names
+          description: Search query for student name
           required: false
           schema:
             type: string
             minLength: 1
-            maxLength: 255
+            maxLength: 100
         - name: course
           in: query
           description: Filter by course
@@ -333,6 +296,22 @@ paths:
             type: integer
             minimum: 1
             maximum: 100
+        - name: sort_by
+          in: query
+          description: Sort field
+          required: false
+          schema:
+            type: string
+            enum: [name, age, course, created_at]
+            default: created_at
+        - name: sort_order
+          in: query
+          description: Sort order
+          required: false
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: desc
       responses:
         '200':
           description: Search results
@@ -347,16 +326,17 @@ paths:
                       $ref: '#/components/schemas/Student'
                   error:
                     type: null
-                  count:
-                    type: integer
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                      query:
+                        type: string
+                      filters:
+                        type: object
         '400':
           description: Invalid search parameters
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '500':
-          description: Internal server error
           content:
             application/json:
               schema:
@@ -365,7 +345,7 @@ paths:
   /api/analytics/overview:
     get:
       summary: Get analytics overview
-      description: Retrieve comprehensive analytics about students
+      description: Retrieve comprehensive analytics data for the dashboard
       tags:
         - Analytics
       responses:
@@ -377,12 +357,48 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: '#/components/schemas/AnalyticsOverview'
+                    type: object
+                    properties:
+                      totalStudents:
+                        type: integer
+                        description: Total number of students
+                      averageAge:
+                        type: number
+                        format: float
+                        description: Average age of all students
+                      mostPopularCourse:
+                        type: string
+                        description: Course with the most students
+                      courseDistribution:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            course:
+                              type: string
+                            count:
+                              type: integer
+                            percentage:
+                              type: number
+                              format: float
+                      ageDistribution:
+                        type: object
+                        additionalProperties:
+                          type: integer
+                      recentGrowth:
+                        type: object
+                        properties:
+                          thisMonth:
+                            type: integer
+                          lastMonth:
+                            type: integer
+                          growthRate:
+                            type: number
+                            format: float
                   error:
                     type: null
               examples:
                 success:
-                  summary: Analytics overview
                   value:
                     data:
                       totalStudents: 150
@@ -390,29 +406,26 @@ paths:
                       mostPopularCourse: "Computer Science"
                       courseDistribution:
                         - course: "Computer Science"
-                          count: 60
-                          percentage: 40
-                        - course: "AI"
                           count: 45
-                          percentage: 30
-                        - course: "Biology"
-                          count: 30
-                          percentage: 20
+                          percentage: 30.0
                         - course: "Mathematics"
-                          count: 15
-                          percentage: 10
+                          count: 30
+                          percentage: 20.0
+                        - course: "Physics"
+                          count: 25
+                          percentage: 16.7
                       ageDistribution:
-                        "Under 20": 25
-                        "20-24": 75
-                        "25-29": 40
-                        "30+": 10
+                        "18": 15
+                        "19": 25
+                        "20": 35
+                        "21": 30
+                        "22": 25
+                        "23": 20
+                      recentGrowth:
+                        thisMonth: 12
+                        lastMonth: 8
+                        growthRate: 50.0
                     error: null
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
 
   /api/analytics/courses:
     get:
@@ -431,15 +444,20 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/CourseDistribution'
+                      type: object
+                      properties:
+                        course:
+                          type: string
+                        count:
+                          type: integer
+                        percentage:
+                          type: number
+                          format: float
+                        averageAge:
+                          type: number
+                          format: float
                   error:
                     type: null
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
 
   /api/analytics/age-groups:
     get:
@@ -457,16 +475,41 @@ paths:
                 properties:
                   data:
                     type: object
-                    additionalProperties:
-                      type: integer
+                    properties:
+                      "18-20":
+                        type: integer
+                      "21-23":
+                        type: integer
+                      "24-26":
+                        type: integer
+                      "27+":
+                        type: integer
                   error:
                     type: null
-        '500':
-          description: Internal server error
+
+  /api/health:
+    get:
+      summary: Health check
+      description: Check API health status
+      tags:
+        - System
+      responses:
+        '200':
+          description: API is healthy
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "healthy"
+                  timestamp:
+                    type: string
+                    format: date-time
+                  version:
+                    type: string
+                    example: "1.0.0"
 
 components:
   schemas:
@@ -504,8 +547,8 @@ components:
         created_at:
           type: string
           format: date-time
-          description: Timestamp when the student record was created
-          example: "2024-01-15T10:30:00.000Z"
+          description: Timestamp when the student was created
+          example: "2024-01-15T10:30:00Z"
 
     CreateStudentRequest:
       type: object
@@ -519,13 +562,13 @@ components:
           minLength: 1
           maxLength: 255
           description: Student's full name
-          example: "John Doe"
+          example: "Alice Johnson"
         age:
           type: integer
           minimum: 1
           maximum: 100
           description: Student's age in years
-          example: 21
+          example: 22
         course:
           type: string
           enum: [Computer Science, AI, Biology, Mathematics, Physics, Chemistry, Engineering]
@@ -540,86 +583,43 @@ components:
           minLength: 1
           maxLength: 255
           description: Student's full name
-          example: "Jane Doe Updated"
+          example: "Alice Johnson"
         age:
           type: integer
           minimum: 1
           maximum: 100
           description: Student's age in years
-          example: 23
+          example: 22
         course:
           type: string
           enum: [Computer Science, AI, Biology, Mathematics, Physics, Chemistry, Engineering]
           description: Student's enrolled course
-          example: "AI"
-
-    AnalyticsOverview:
-      type: object
-      properties:
-        totalStudents:
-          type: integer
-          description: Total number of students
-          example: 150
-        averageAge:
-          type: number
-          format: float
-          description: Average age of all students
-          example: 21.5
-        mostPopularCourse:
-          type: string
-          description: Course with the highest enrollment
           example: "Computer Science"
-        courseDistribution:
-          type: array
-          items:
-            $ref: '#/components/schemas/CourseDistribution'
-        ageDistribution:
-          type: object
-          additionalProperties:
-            type: integer
-          description: Distribution of students by age groups
-          example:
-            "Under 20": 25
-            "20-24": 75
-            "25-29": 40
-            "30+": 10
-
-    CourseDistribution:
-      type: object
-      properties:
-        course:
-          type: string
-          description: Course name
-          example: "Computer Science"
-        count:
-          type: integer
-          description: Number of students in this course
-          example: 60
-        percentage:
-          type: number
-          format: float
-          description: Percentage of total students
-          example: 40.0
 
     Error:
       type: object
+      required:
+        - data
+        - error
       properties:
         data:
           type: null
+          description: Always null for error responses
         error:
           type: string
           description: Error message describing what went wrong
-          example: "Student not found"
+          example: "Validation failed: Name is required"
 
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
       in: header
       name: X-API-Key
-      description: API key for authentication (if implemented)
 
 tags:
   - name: Students
     description: Student management operations
   - name: Analytics
-    description: Analytics and reporting operations
+    description: Analytics and reporting endpoints
+  - name: System
+    description: System health and status endpoints
